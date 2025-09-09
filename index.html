@@ -49,7 +49,7 @@
     .music-player {
       margin-top: 20px;
     }
-    .letter, .why-special, .quiz-section, .chat-line, .night-scene, .thank-you-section, .extra-love-note, .special-note {
+    .letter, .why-special, .quiz-section, .chat-line, .night-scene, .thank-you-section, .extra-love-note, .special-note, .memory-game {
       background-color: #fff;
       padding: 20px;
       margin-top: 30px;
@@ -99,6 +99,41 @@
       background: radial-gradient(circle at top, #0d1b2a, #1b263b);
       color: #fff;
     }
+
+    /* Memory game styles */
+    .game-board {
+      display: grid;
+      grid-template-columns: repeat(4, 80px);
+      gap: 10px;
+      justify-content: center;
+      margin: 20px auto;
+    }
+    .card {
+      width: 80px;
+      height: 100px;
+      background: #d81b60;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .card.flipped {
+      background: #fff;
+      border: 2px solid #d81b60;
+      transform: rotateY(180deg);
+      color: #d81b60;
+    }
+    #message {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #388e3c;
+      font-weight: bold;
+    }
+
     @media(max-width: 600px) {
       h1 { font-size: 2rem; }
       .cake { width: 100%; }
@@ -118,7 +153,6 @@
   <img class="balloons" src="https://cdn-icons-png.flaticon.com/512/3371/3371893.png" alt="balloons">
 
   <div class="cake">
-    <!-- <img src="https://cdn.pixabay.com/photo/2016/03/05/20/07/birthday-cake-1230261_960_720.jpg" alt="Birthday Cake" style="width:100%; border-radius: 15px;"> -->
     <h2>Shumaila 🎂</h2>
   </div>
 
@@ -150,12 +184,10 @@
   </ul>
 </div>
 
-
  <div class="chat-line">
   <h3>Favorite Chat Line 💬</h3>
   <p><em>"Sabr ka phal meetha hota hai 😂"</em> — one of our funniest moments! 😄</p>
 </div>
-
 
   <div class="quiz-section">
     <h3>Let’s Play a Mini Quiz 🎉</h3>
@@ -170,6 +202,14 @@
     </form>
   </div>
 
+  <!-- 🎮 Memory Game Section -->
+  <div class="memory-game">
+    <h3>🎮 Birthday Memory Game 🎂</h3>
+    <p>Flip the cards and match the pairs!</p>
+    <div class="game-board" id="gameBoard"></div>
+    <p id="message"></p>
+  </div>
+
 <div class="special-note">
   <h3>🌟 A Special Note Just for You</h3>
   <p>
@@ -180,7 +220,6 @@
   </p>
 </div>
 
-
 <div class="night-scene">
   <h3>🌌 Just Like a Starry Night</h3>
   <p>
@@ -188,7 +227,6 @@
     May your year shine with countless happy moments, just like a starry sky. 🌠
   </p>
 </div>
-
 
   <div class="password-section">
     <input type="password" id="secretInput" class="input-password" placeholder="Yourname">
@@ -214,28 +252,73 @@
       }
     }
 
-  
-  document.addEventListener('DOMContentLoaded', function () {
-    const music = document.getElementById('bgmusic');
-    music.volume = 0.2;
+    document.addEventListener('DOMContentLoaded', function () {
+      const music = document.getElementById('bgmusic');
+      music.volume = 0.2;
 
-    // Try auto-playing with a small delay
-    setTimeout(() => {
-      const playPromise = music.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            console.log("Music playing...");
-          })
-          .catch(error => {
-            console.log("Autoplay prevented. Waiting for user interaction.");
-            document.body.addEventListener('click', () => {
-              music.play();
-            }, { once: true });
-          });
+      // Try auto-playing with a small delay
+      setTimeout(() => {
+        const playPromise = music.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              console.log("Music playing...");
+            })
+            .catch(error => {
+              console.log("Autoplay prevented. Waiting for user interaction.");
+              document.body.addEventListener('click', () => {
+                music.play();
+              }, { once: true });
+            });
+        }
+      }, 1000);
+    });
+
+    // 🎮 Memory Game Script
+    const icons = ["🎂","🎁","🎈","🍰","🎉","🍫"];
+    let cards = [...icons, ...icons]; // pairs
+    let flipped = [];
+    let matched = 0;
+
+    // shuffle
+    cards.sort(() => Math.random() - 0.5);
+
+    const board = document.getElementById("gameBoard");
+
+    cards.forEach(icon => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.dataset.icon = icon;
+      card.textContent = "?";
+      board.appendChild(card);
+
+      card.addEventListener("click", () => {
+        if (card.classList.contains("flipped") || flipped.length === 2) return;
+        card.textContent = icon;
+        card.classList.add("flipped");
+        flipped.push(card);
+
+        if (flipped.length === 2) {
+          setTimeout(checkMatch, 800);
+        }
+      });
+    });
+
+    function checkMatch() {
+      const [card1, card2] = flipped;
+      if (card1.dataset.icon === card2.dataset.icon) {
+        matched += 2;
+        if (matched === cards.length) {
+          document.getElementById("message").textContent = "🎉 Yay Shumaila! You found all the matches! 🥳";
+        }
+      } else {
+        card1.textContent = "?";
+        card2.textContent = "?";
+        card1.classList.remove("flipped");
+        card2.classList.remove("flipped");
       }
-    }, 1000);
-  });
+      flipped = [];
+    }
   </script>
 
 <div class="thank-you-section">
