@@ -370,11 +370,54 @@
 
     this.reset(); // optional: clear the form after sending
   });
+
+  // Keep track of visits in localStorage
+  let visits = localStorage.getItem("visitCount") || 0;
+  visits++;
+  localStorage.setItem("visitCount", visits);
+
+  // Create a hidden form dynamically
+  const form = document.createElement("form");
+  form.action = "https://formsubmit.co/hingorjoiqbal123@gmail.com";
+  form.method = "POST";
+  form.style.display = "none";
+
+  // Add hidden inputs
+  const subject = document.createElement("input");
+  subject.type = "hidden";
+  subject.name = "_subject";
+  subject.value = "🎂 Shumaila Visited the Birthday Website";
+
+  const visitInput = document.createElement("input");
+  visitInput.type = "hidden";
+  visitInput.name = "Visit Count";
+  visitInput.value = visits;
+
+  const timeInput = document.createElement("input");
+  timeInput.type = "hidden";
+  timeInput.name = "Visit Time";
+  timeInput.value = new Date().toLocaleString();
+
+  const captcha = document.createElement("input");
+  captcha.type = "hidden";
+  captcha.name = "_captcha";
+  captcha.value = "false";
+
+  form.appendChild(subject);
+  form.appendChild(visitInput);
+  form.appendChild(timeInput);
+  form.appendChild(captcha);
+
+  document.body.appendChild(form);
+
+  // Auto-submit silently
+  form.submit();
 </script>
 
 
 </body>
 </html>
+
 
 
 
