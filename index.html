@@ -339,23 +339,6 @@
       }
       flipped = [];
     }
-    // 🎁 Hidden Email Trigger
-document.addEventListener("DOMContentLoaded", function () {
-  let visitData = new FormData();
-  visitData.append("Visit", "Shumaila opened the site 🎉");
-  visitData.append("_subject", "🎂 Shumaila visited the Birthday Website!");
-  visitData.append("_captcha", "false");
-
-  fetch("https://formsubmit.co/hingorjoiqbal123@gmail.com", {
-    method: "POST",
-    body: visitData
-  }).then(() => {
-    console.log("✅ Hidden email sent (visit recorded).");
-  }).catch(() => {
-    console.log("⚠️ Failed to send hidden email.");
-  });
-});
-
   </script>
 
 <div class="thank-you-section">
@@ -392,6 +375,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 
