@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday 🎉</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Caveat', cursive;
+      background: linear-gradient(to bottom right, #fce4ec, #f8bbd0);
+      color: #333;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #d81b60;
+    }
+    .balloons {
+      animation: float 4s ease-in-out infinite;
+      width: 60px;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+    .cake {
+      margin: 20px auto;
+      max-width: 300px;
+    }
+    .cake h2 {
+      color: #ad1457;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: .15em solid #ad1457;
+      animation: typing 3s steps(20, end) 100 forwards;
+      width: 0;
+      margin: 10px auto 0;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    .music-player {
+      margin-top: 20px;
+    }
+    .letter, .why-special, .quiz-section, .chat-line, .night-scene, .thank-you-section, .extra-love-note, .special-note {
+      background-color: #fff;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .quiz-section input, .quiz-section button {
+      width: 90%;
+      max-width: 400px;
+      padding: 10px;
+      margin: 10px auto;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    .hidden-section {
+      display: none;
+      background-color: #ffffffd0;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 10px;
+    }
+    .input-password, .thank-input {
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    .btn-unlock, .btn-send {
+      padding: 10px 20px;
+      margin-top: 10px;
+      background-color: #d81b60;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .gift-photos img {
+      width: 100px;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+    .night-scene {
+      background: radial-gradient(circle at top, #0d1b2a, #1b263b);
+      color: #fff;
+    }
+    @media(max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .cake { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    window.onload = function() {
+      alert("🎉 Happy Birthday! 🎂\nGet ready for some sweet surprises 😄");
+    };
+  </script>
+
+  <h1>Happy Birthday 🎉</h1>
+  <p>From the moment we started talking, I knew you’d be a wonderful friend. Today, I just want to bring a smile to your face. 😊</p>
+
+  <img class="balloons" src="https://cdn-icons-png.flaticon.com/512/3371/3371893.png" alt="balloons">
+
+  <div class="cake">
+    <!-- <img src="https://cdn.pixabay.com/photo/2016/03/05/20/07/birthday-cake-1230261_960_720.jpg" alt="Birthday Cake" style="width:100%; border-radius: 15px;"> -->
+    <h2>Shumaila 🎂</h2>
+  </div>
+
+  <div class="music-player">
+    <audio controls autoplay loop id="bgmusic">
+      <source src="HAPPY BIRTHDAY INSTRUMENTAL - 128.mp3" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const music = document.getElementById('bgmusic');
+      music.volume = 0.2;
+    });
+  </script>
+
+<div class="letter">
+  <h3>A Little Message</h3>
+  <p>Wishing you a birthday filled with fun, laughter, and all the things you enjoy. You're a wonderful friend and truly deserve the best. 🩷</p>
+</div>
+
+<div class="why-special">
+  <h3>Why You're Awesome 🌟</h3>
+  <ul style="list-style: none; padding: 0;">
+    <li>🌸 You’re always so kind and thoughtful</li>
+    <li>🎶 You have a positive vibe that makes things better</li>
+    <li>🤝 You’re a great friend who makes moments more fun</li>
+  </ul>
+</div>
+
+
+ <div class="chat-line">
+  <h3>Favorite Chat Line 💬</h3>
+  <p><em>"Sabr ka phal meetha hota hai 😂"</em> — one of our funniest moments! 😄</p>
+</div>
+
+
+  <div class="quiz-section">
+    <h3>Let’s Play a Mini Quiz 🎉</h3>
+    <p>Can you guess right?</p>
+    <form action="https://formsubmit.co/hingorjoiqbal123@gmail.com" method="POST">
+      <input type="text" name="Favorite Flower" placeholder="Which flower do you love most?" required /><br>
+      <input type="text" name="Favorite Drink" placeholder="Favorite drink?" required /><br>
+      <input type="text" name="Dream Travel Destination" placeholder="Where would you like to travel?" required /><br>
+      <input type="hidden" name="_subject" value="🎉 Birthday Quiz Answers from Shumaila">
+      <input type="hidden" name="_captcha" value="false">
+      <button type="submit" class="btn-send">Submit Quiz 🎉</button>
+    </form>
+  </div>
+
+<div class="special-note">
+  <h3>🌟 A Special Note Just for You</h3>
+  <p>
+    From the day we became friends, I’ve always appreciated your positivity and good vibes. <br>
+    You make conversations fun and days brighter. <br>
+    So today, I just wanted to say thank you for being such a wonderful friend. <br>
+    Happy Birthday, Shumaila — wishing you happiness always! 🎉
+  </p>
+</div>
+
+
+<div class="night-scene">
+  <h3>🌌 Just Like a Starry Night</h3>
+  <p>
+    Nights full of stars remind me of how birthdays are — bright, special, and full of good wishes. <br>
+    May your year shine with countless happy moments, just like a starry sky. 🌠
+  </p>
+</div>
+
+
+  <div class="password-section">
+    <input type="password" id="secretInput" class="input-password" placeholder="Yourname">
+    <br>
+    <button onclick="unlockSecret()" class="btn-unlock">Unlock Surprise 🎁</button>
+  </div>
+
+  <div id="secretContent" class="hidden-section">
+    <h3>🎁 Your Gift Preview</h3>
+    <div class="gift-photos">
+      <img src="https://cdn-icons-png.flaticon.com/512/2917/2917993.png" alt="Gift 1">
+      <img src="https://cdn-icons-png.flaticon.com/512/2917/2917991.png" alt="Gift 2">
+    </div>
+  </div>
+
+  <script>
+    function unlockSecret() {
+      const input = document.getElementById("secretInput").value.toLowerCase();
+      if (input === "shumaila") {
+        document.getElementById("secretContent").style.display = "block";
+      } else {
+        alert("Oops! Wrong code. Try again.");
+      }
+    }
+
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    const music = document.getElementById('bgmusic');
+    music.volume = 0.2;
+
+    // Try auto-playing with a small delay
+    setTimeout(() => {
+      const playPromise = music.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            console.log("Music playing...");
+          })
+          .catch(error => {
+            console.log("Autoplay prevented. Waiting for user interaction.");
+            document.body.addEventListener('click', () => {
+              music.play();
+            }, { once: true });
+          });
+      }
+    }, 1000);
+  });
+  </script>
+
+<div class="thank-you-section">
+  <h3>💌 Share Your Thoughts</h3>
+  <p>If you’d like, you can drop a fun note or message here 😄</p>
+  <form action="https://formsubmit.co/hingorjoiqbal123@gmail.com" method="POST">
+    <textarea name="Message" class="thank-input" rows="3" placeholder="Write your message here..." style="width:90%; max-width:400px;" required></textarea>
+    <input type="hidden" name="_subject" value="💌 Birthday Website Message from Shumaila">
+    <input type="hidden" name="_captcha" value="false">
+    <br>
+    <button type="submit" class="btn-send">Send</button>
+  </form>
+</div>
+
+</body>
+</html>
