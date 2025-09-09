@@ -324,7 +324,7 @@
 <div class="thank-you-section">
   <h3>💌 Share Your Thoughts</h3>
   <p>If you’d like, you can drop a fun note or message here 😄</p>
-  <form action="https://formsubmit.co/hingorjoiqbal123@gmail.com" method="POST">
+  <form id="thankForm">
     <textarea name="Message" class="thank-input" rows="3" placeholder="Write your message here..." style="width:90%; max-width:400px;" required></textarea>
     <input type="hidden" name="_subject" value="💌 Birthday Website Message from Shumaila">
     <input type="hidden" name="_captcha" value="false">
@@ -333,6 +333,27 @@
   </form>
 </div>
 
+<script>
+  document.getElementById("thankForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // stop default form redirect
+
+    let formData = new FormData(this);
+
+    fetch("https://formsubmit.co/hingorjoiqbal123@gmail.com", {
+      method: "POST",
+      body: formData
+    }).then(() => {
+      // Do nothing (silent submit)
+    }).catch(() => {
+      // Still do nothing, even if error
+    });
+
+    this.reset(); // optional: clear the form after sending
+  });
+</script>
+
+
 </body>
 </html>
+
 
