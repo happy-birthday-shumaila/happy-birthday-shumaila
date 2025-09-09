@@ -189,18 +189,38 @@
   <p><em>"Sabr ka phal meetha hota hai 😂"</em> — one of our funniest moments! 😄</p>
 </div>
 
-  <div class="quiz-section">
-    <h3>Let’s Play a Mini Quiz 🎉</h3>
-    <p>Can you guess right?</p>
-    <form action="https://formsubmit.co/hingorjoiqbal123@gmail.com" method="POST">
-      <input type="text" name="Favorite Flower" placeholder="Which flower do you love most?" required /><br>
-      <input type="text" name="Favorite Drink" placeholder="Favorite drink?" required /><br>
-      <input type="text" name="Dream Travel Destination" placeholder="Where would you like to travel?" required /><br>
-      <input type="hidden" name="_subject" value="🎉 Birthday Quiz Answers from Shumaila">
-      <input type="hidden" name="_captcha" value="false">
-      <button type="submit" class="btn-send">Submit Quiz 🎉</button>
-    </form>
-  </div>
+<div class="quiz-section">
+  <h3>Let’s Play a Mini Quiz 🎉</h3>
+  <p>Can you guess right?</p>
+  <form id="quizForm">
+    <input type="text" name="Favorite Flower" placeholder="Which flower do you love most?" required /><br>
+    <input type="text" name="Favorite Drink" placeholder="Favorite drink?" required /><br>
+    <input type="text" name="Dream Travel Destination" placeholder="Where would you like to travel?" required /><br>
+    <input type="hidden" name="_subject" value="🎉 Birthday Quiz Answers from Shumaila">
+    <input type="hidden" name="_captcha" value="false">
+    <button type="submit" class="btn-send">Submit Quiz 🎉</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById("quizForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // stop default form redirect
+
+    let formData = new FormData(this);
+
+    fetch("https://formsubmit.co/hingorjoiqbal123@gmail.com", {
+      method: "POST",
+      body: formData
+    }).then(() => {
+      // No popup, no redirect — stays silent
+    }).catch(() => {
+      // Silent even if error
+    });
+
+    this.reset(); // optional: clears answers after sending
+  });
+</script>
+
 
   <!-- 🎮 Memory Game Section -->
   <div class="memory-game">
@@ -355,5 +375,6 @@
 
 </body>
 </html>
+
 
 
