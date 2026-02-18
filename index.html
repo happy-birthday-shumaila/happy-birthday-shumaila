@@ -1,384 +1,1188 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday 🎉</title>
+  <title>Happy Birthday, Shumaila 🌸</title>
+  <meta name="description"
+    content="A heartfelt birthday experience crafted just for Shumaila — with love, warmth, and sincerity." />
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Great+Vibes&family=Lato:wght@300;400&display=swap"
+    rel="stylesheet">
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Caveat', cursive;
-      background: linear-gradient(to bottom right, #fce4ec, #f8bbd0);
-      color: #333;
-      text-align: center;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 2.5rem;
-      color: #d81b60;
-    }
-    .balloons {
-      animation: float 4s ease-in-out infinite;
-      width: 60px;
-    }
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0); }
-    }
-    .cake {
-      margin: 20px auto;
-      max-width: 300px;
-    }
-    .cake h2 {
-      color: #ad1457;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: .15em solid #ad1457;
-      animation: typing 3s steps(20, end) 100 forwards;
-      width: 0;
-      margin: 10px auto 0;
-    }
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-    .music-player {
-      margin-top: 20px;
-    }
-    .letter, .why-special, .quiz-section, .chat-line, .night-scene, .thank-you-section, .extra-love-note, .special-note, .memory-game {
-      background-color: #fff;
-      padding: 20px;
-      margin-top: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .quiz-section input, .quiz-section button {
-      width: 90%;
-      max-width: 400px;
-      padding: 10px;
-      margin: 10px auto;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-    .hidden-section {
-      display: none;
-      background-color: #ffffffd0;
-      padding: 20px;
-      margin-top: 30px;
-      border-radius: 10px;
-    }
-    .input-password, .thank-input {
-      padding: 10px;
-      margin-top: 20px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-    .btn-unlock, .btn-send {
-      padding: 10px 20px;
-      margin-top: 10px;
-      background-color: #d81b60;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .gift-photos img {
-      width: 100px;
-      margin: 10px;
-      border-radius: 10px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.2);
-    }
-    .night-scene {
-      background: radial-gradient(circle at top, #0d1b2a, #1b263b);
-      color: #fff;
+    /* ─── CSS Variables ─────────────────────────────────────── */
+    :root {
+      --pink: #f4a7b9;
+      --rose: #e8738a;
+      --deep-rose: #c0546a;
+      --lavender: #d8c4e8;
+      --cream: #fdf6f0;
+      --beige: #f5ece4;
+      --text: #4a3540;
+      --muted: #8a6a76;
+      --white: #ffffff;
     }
 
-    /* Memory game styles */
-    .game-board {
-      display: grid;
-      grid-template-columns: repeat(4, 80px);
-      gap: 10px;
-      justify-content: center;
-      margin: 20px auto;
+    /* ─── Reset & Base ──────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    .card {
-      width: 80px;
-      height: 100px;
-      background: #d81b60;
-      border-radius: 8px;
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── Scroll Animation ──────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Music Player ──────────────────────────────────────── */
+    #music-bar {
+      position: fixed;
+      top: 18px;
+      right: 22px;
+      z-index: 999;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: white;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .card.flipped {
-      background: #fff;
-      border: 2px solid #d81b60;
-      transform: rotateY(180deg);
-      color: #d81b60;
-    }
-    #message {
-      margin-top: 15px;
-      font-size: 18px;
-      color: #388e3c;
-      font-weight: bold;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(244, 167, 185, 0.4);
+      border-radius: 50px;
+      padding: 8px 18px;
+      box-shadow: 0 4px 20px rgba(200, 100, 120, 0.12);
     }
 
-    @media(max-width: 600px) {
-      h1 { font-size: 2rem; }
-      .cake { width: 100%; }
+    #music-bar span {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    #music-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+      line-height: 1;
+      transition: transform 0.2s;
+    }
+
+    #music-toggle:hover {
+      transform: scale(1.2);
+    }
+
+    /* ─── SECTION 1 — Hero ──────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, #fdf0f5 0%, #fce8f0 40%, #f0e8f8 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 30%, rgba(244, 167, 185, 0.25) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 70%, rgba(216, 196, 232, 0.25) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-date {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      color: var(--deep-rose);
+      line-height: 1.1;
+      text-shadow: 0 2px 30px rgba(200, 84, 106, 0.15);
+    }
+
+    .hero-name {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      color: var(--rose);
+      margin-top: 4px;
+    }
+
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      color: var(--muted);
+      margin-top: 22px;
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--pink), transparent);
+      margin: 30px auto;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .scroll-hint svg {
+      opacity: 0.5;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(8px);
+      }
+    }
+
+    /* Petal particles */
+    .petal {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50% 0 50% 0;
+      opacity: 0;
+      animation: petalFall linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes petalFall {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px) rotate(0deg);
+      }
+
+      10% {
+        opacity: 0.6;
+      }
+
+      90% {
+        opacity: 0.3;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
+    /* ─── Shared Section Styles ─────────────────────────────── */
+    section {
+      padding: 90px 20px;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 14px;
+    }
+
+    .section-heading {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      color: var(--deep-rose);
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    .section-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.05rem, 2vw, 1.22rem);
+      color: var(--text);
+      line-height: 1.9;
+    }
+
+    .section-body em {
+      color: var(--rose);
+      font-style: italic;
+    }
+
+    .thin-divider {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--lavender), transparent);
+      margin: 50px auto;
+    }
+
+    /* ─── SECTION 2 — Friendship ────────────────────────────── */
+    #friendship {
+      background: var(--cream);
+      text-align: center;
+    }
+
+    .qualities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .quality-card {
+      background: var(--white);
+      border: 1px solid rgba(244, 167, 185, 0.3);
+      border-radius: 18px;
+      padding: 28px 20px;
+      box-shadow: 0 4px 24px rgba(200, 100, 120, 0.07);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .quality-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 36px rgba(200, 100, 120, 0.14);
+    }
+
+    .quality-icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .quality-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--deep-rose);
+      margin-bottom: 8px;
+    }
+
+    .quality-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── SECTION 3 — Depth ─────────────────────────────────── */
+    #depth {
+      background: linear-gradient(to bottom, var(--cream), var(--beige));
+      text-align: center;
+    }
+
+    .quote-block {
+      background: var(--white);
+      border-left: 3px solid var(--pink);
+      border-radius: 0 16px 16px 0;
+      padding: 28px 32px;
+      margin: 36px 0;
+      text-align: left;
+      box-shadow: 0 4px 20px rgba(200, 100, 120, 0.07);
+    }
+
+    .quote-block p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.18rem;
+      color: var(--text);
+      line-height: 1.85;
+    }
+
+    /* ─── SECTION 4 — Realization ───────────────────────────── */
+    #realization {
+      background: var(--beige);
+      text-align: center;
+    }
+
+    .timeline {
+      position: relative;
+      margin-top: 44px;
+      text-align: left;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--pink), var(--lavender));
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 36px;
+      padding-left: 10px;
+    }
+
+    .timeline-dot {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--pink);
+      margin-top: 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-content h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--deep-rose);
+      margin-bottom: 6px;
+    }
+
+    .timeline-content p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ─── SECTION 5 — Confession ────────────────────────────── */
+    #confession {
+      position: relative;
+      background: linear-gradient(160deg, #fce8f0 0%, #f0e4f8 100%);
+      text-align: center;
+      overflow: hidden;
+      padding: 100px 20px;
+      max-width: 100%;
+    }
+
+    #confession .inner {
+      max-width: 680px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .confession-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+      color: var(--text);
+      line-height: 2;
+      margin-bottom: 24px;
+    }
+
+    .confession-highlight {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--deep-rose);
+      display: block;
+      margin: 20px 0;
+    }
+
+    /* Floating hearts */
+    .heart-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -40px;
+      font-size: 1.2rem;
+      opacity: 0;
+      animation: floatHeart linear infinite;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        opacity: 0;
+        transform: translateY(0) scale(0.8);
+      }
+
+      15% {
+        opacity: 0.7;
+      }
+
+      85% {
+        opacity: 0.4;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-110vh) scale(1.2);
+      }
+    }
+
+    /* Soft glow behind confession heading */
+    .glow-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(244, 167, 185, 0.3) 0%, transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+      }
+
+      50% {
+        transform: translate(-50%, -50%) scale(1.12);
+        opacity: 1;
+      }
+    }
+
+    /* ─── SECTION 6 — Closing ───────────────────────────────── */
+    #closing {
+      background: var(--cream);
+      text-align: center;
+    }
+
+    .closing-card {
+      background: var(--white);
+      border: 1px solid rgba(216, 196, 232, 0.5);
+      border-radius: 24px;
+      padding: 50px 40px;
+      box-shadow: 0 8px 40px rgba(200, 100, 120, 0.08);
+      margin-top: 30px;
+    }
+
+    .closing-card p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      color: var(--text);
+      line-height: 1.95;
+      margin-bottom: 16px;
+    }
+
+    .signature {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: var(--rose);
+      margin-top: 30px;
+    }
+
+    /* ─── Quiz Section ──────────────────────────────────────── */
+    #quiz-section {
+      background: var(--beige);
+      text-align: center;
+    }
+
+    .quiz-form {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 36px 32px;
+      box-shadow: 0 6px 30px rgba(200, 100, 120, 0.08);
+      margin-top: 30px;
+      text-align: left;
+    }
+
+    .quiz-field {
+      margin-bottom: 20px;
+    }
+
+    .quiz-field label {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .quiz-field input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid rgba(244, 167, 185, 0.5);
+      border-radius: 10px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--cream);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .quiz-field input:focus {
+      border-color: var(--rose);
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 36px;
+      background: linear-gradient(135deg, var(--rose), var(--deep-rose));
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s;
+      box-shadow: 0 4px 20px rgba(200, 84, 106, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(200, 84, 106, 0.4);
+    }
+
+    .quiz-success {
+      display: none;
+      color: var(--rose);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      margin-top: 16px;
+    }
+
+    /* ─── Message Section ───────────────────────────────────── */
+    #message-section {
+      background: var(--cream);
+      text-align: center;
+    }
+
+    .message-form {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 36px 32px;
+      box-shadow: 0 6px 30px rgba(200, 100, 120, 0.08);
+      margin-top: 30px;
+    }
+
+    .message-form textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid rgba(244, 167, 185, 0.5);
+      border-radius: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: var(--text);
+      background: var(--cream);
+      resize: vertical;
+      min-height: 120px;
+      outline: none;
+      transition: border-color 0.3s;
+      margin-bottom: 20px;
+    }
+
+    .message-form textarea:focus {
+      border-color: var(--rose);
+    }
+
+    .msg-success {
+      display: none;
+      color: var(--rose);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      margin-top: 12px;
+    }
+
+    /* ─── Footer ────────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      border-top: 1px solid rgba(244, 167, 185, 0.2);
+    }
+
+    footer span {
+      color: var(--rose);
+    }
+
+    /* ─── Shayri Section ────────────────────────────────────── */
+    #shayri {
+      background: linear-gradient(160deg, #fdf6f0 0%, #f5ece4 100%);
+      text-align: center;
+    }
+
+    .shayri-card {
+      position: relative;
+      background: var(--white);
+      border: 1px solid rgba(216, 196, 232, 0.45);
+      border-radius: 24px;
+      padding: 50px 44px;
+      margin-top: 36px;
+      box-shadow: 0 8px 40px rgba(200, 100, 120, 0.09);
+      overflow: hidden;
+    }
+
+    .shayri-card::before {
+      content: '\201C';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 9rem;
+      color: rgba(244, 167, 185, 0.18);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .shayri-sindhi {
+      font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', Georgia, serif;
+      font-size: clamp(1.3rem, 3vw, 1.75rem);
+      color: var(--deep-rose);
+      line-height: 2.4;
+      direction: rtl;
+      text-align: right;
+      margin-bottom: 28px;
+      letter-spacing: 0.01em;
+    }
+
+    .shayri-divider {
+      width: 50px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--pink), transparent);
+      margin: 24px auto;
+    }
+
+    .shayri-meaning {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(0.95rem, 1.8vw, 1.08rem);
+      color: var(--muted);
+      line-height: 2;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .shayri-personal {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.05rem, 2vw, 1.22rem);
+      color: var(--text);
+      line-height: 2.1;
+      direction: rtl;
+      text-align: right;
+      margin-top: 10px;
+    }
+
+    .shayri-closing {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      color: var(--deep-rose);
+      direction: rtl;
+      text-align: right;
+      margin-top: 18px;
+      line-height: 1.8;
+    }
+
+    .shayri-poet {
+      margin-top: 28px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+
+    .shayri-ornament {
+      font-size: 1.2rem;
+      margin: 0 8px;
+      opacity: 0.5;
+    }
+
+    /* ─── Responsive ────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      section {
+        padding: 70px 18px;
+      }
+
+      .closing-card {
+        padding: 36px 22px;
+      }
+
+      .quiz-form,
+      .message-form {
+        padding: 28px 20px;
+      }
+
+      .timeline::before {
+        left: 10px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <script>
-    window.onload = function() {
-      alert("🎉 Happy Birthday! 🎂\nGet ready for some sweet surprises 😄");
-    };
-  </script>
 
-  <h1>Happy Birthday 🎉</h1>
-  <p>From the moment we started talking, I knew you’d be a wonderful friend. Today, I just want to bring a smile to your face. 😊</p>
-
-  <img class="balloons" src="https://cdn-icons-png.flaticon.com/512/3371/3371893.png" alt="balloons">
-
-  <div class="cake">
-    <h2>Shumaila 🎂</h2>
+  <!-- ── Music Bar ─────────────────────────────────────────── -->
+  <div id="music-bar">
+    <button id="music-toggle" title="Toggle music">🎵</button>
+    <span>Soft melody for you</span>
   </div>
+  <audio id="bgmusic" loop>
+    <source src="HAPPY BIRTHDAY INSTRUMENTAL - 128.mp3" type="audio/mpeg">
+  </audio>
 
-  <div class="music-player">
-    <audio controls autoplay loop id="bgmusic">
-      <source src="HAPPY BIRTHDAY INSTRUMENTAL - 128.mp3" type="audio/mp3">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
+  <!-- ══════════════════════════════════════════════════════════
+       SECTION 1 — HERO
+  ══════════════════════════════════════════════════════════ -->
+  <div id="hero">
+    <!-- Petal particles (JS-generated) -->
+    <div id="petals"></div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const music = document.getElementById('bgmusic');
-      music.volume = 0.2;
-    });
-  </script>
+    <p class="hero-date reveal">20 September · A Day Worth Celebrating</p>
+    <h1 class="hero-title reveal">Happy Birthday</h1>
+    <p class="hero-name reveal">Shumaila</p>
+    <div class="hero-divider reveal"></div>
+    <p class="hero-sub reveal">
+      Some people walk into your life quietly,<br>
+      and somehow make everything a little brighter.
+    </p>
 
-<div class="letter">
-  <h3>A Little Message</h3>
-  <p>Wishing you a birthday filled with fun, laughter, and all the things you enjoy. You're a wonderful friend and truly deserve the best. 🩷</p>
-</div>
-
-<div class="why-special">
-  <h3>Why You're Awesome 🌟</h3>
-  <ul style="list-style: none; padding: 0;">
-    <li>🌸 You’re always so kind and thoughtful</li>
-    <li>🎶 You have a positive vibe that makes things better</li>
-    <li>🤝 You’re a great friend who makes moments more fun</li>
-  </ul>
-</div>
-
- <div class="chat-line">
-  <h3>Favorite Chat Line 💬</h3>
-  <p><em>"Sabr ka phal meetha hota hai 😂"</em> — one of our funniest moments! 😄</p>
-</div>
-
-<div class="quiz-section">
-  <h3>Let’s Play a Mini Quiz 🎉</h3>
-  <p>Can you guess right?</p>
-  <form id="quizForm">
-    <input type="text" name="Favorite Flower" placeholder="Which flower do you love most?" required /><br>
-    <input type="text" name="Favorite Drink" placeholder="Favorite drink?" required /><br>
-    <input type="text" name="Dream Travel Destination" placeholder="Where would you like to travel?" required /><br>
-    <input type="hidden" name="_subject" value="🎉 Birthday Quiz Answers from Shumaila">
-    <input type="hidden" name="_captcha" value="false">
-    <button type="submit" class="btn-send">Submit Quiz 🎉</button>
-  </form>
-</div>
-
-<script>
-  document.getElementById("quizForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // stop default form redirect
-
-    let formData = new FormData(this);
-
-    fetch("https://formsubmit.co/hingorjoiqbal123@gmail.com", {
-      method: "POST",
-      body: formData
-    }).then(() => {
-      // No popup, no redirect — stays silent
-    }).catch(() => {
-      // Silent even if error
-    });
-
-    this.reset(); // optional: clears answers after sending
-  });
-</script>
-
-
-  <!-- 🎮 Memory Game Section -->
-  <div class="memory-game">
-    <h3>🎮 Birthday Memory Game 🎂</h3>
-    <p>Flip the cards and match the pairs!</p>
-    <div class="game-board" id="gameBoard"></div>
-    <p id="message"></p>
-  </div>
-
-<div class="special-note">
-  <h3>🌟 A Special Note Just for You</h3>
-  <p>
-    From the day we became friends, I’ve always appreciated your positivity and good vibes. <br>
-    You make conversations fun and days brighter. <br>
-    So today, I just wanted to say thank you for being such a wonderful friend. <br>
-    Happy Birthday, Shumaila — wishing you happiness always! 🎉
-  </p>
-</div>
-
-<div class="night-scene">
-  <h3>🌌 Just Like a Starry Night</h3>
-  <p>
-    Nights full of stars remind me of how birthdays are — bright, special, and full of good wishes. <br>
-    May your year shine with countless happy moments, just like a starry sky. 🌠
-  </p>
-</div>
-
-  <div class="password-section">
-    <input type="password" id="secretInput" class="input-password" placeholder="Yourname">
-    <br>
-    <button onclick="unlockSecret()" class="btn-unlock">Unlock Surprise 🎁</button>
-  </div>
-
-  <div id="secretContent" class="hidden-section">
-    <h3>🎁 Your Gift Preview</h3>
-    <div class="gift-photos">
-      <img src="https://cdn-icons-png.flaticon.com/512/2917/2917993.png" alt="Gift 1">
-      <img src="https://cdn-icons-png.flaticon.com/512/2917/2917991.png" alt="Gift 2">
+    <div class="scroll-hint">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 5v14M5 12l7 7 7-7" />
+      </svg>
+      scroll
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════════════════════════
+       SECTION 2 — FRIENDSHIP APPRECIATION
+  ══════════════════════════════════════════════════════════ -->
+  <section id="friendship">
+    <p class="section-label reveal">Chapter One</p>
+    <h2 class="section-heading reveal">What I See in You</h2>
+    <p class="section-body reveal">
+      Before anything else, I want you to know — you are genuinely one of the most
+      <em>remarkable</em> people I've had the privilege of knowing.
+      Not because of grand gestures, but because of who you simply <em>are</em>.
+    </p>
+
+    <div class="qualities-grid">
+      <div class="quality-card reveal">
+        <div class="quality-icon">🌸</div>
+        <div class="quality-title">Effortless Kindness</div>
+        <div class="quality-desc">You make people feel seen without even trying. That's rare.</div>
+      </div>
+      <div class="quality-card reveal">
+        <div class="quality-icon">✨</div>
+        <div class="quality-title">Quiet Strength</div>
+        <div class="quality-desc">There's a calm resilience in you that I've always admired deeply.</div>
+      </div>
+      <div class="quality-card reveal">
+        <div class="quality-icon">🎶</div>
+        <div class="quality-title">Warm Presence</div>
+        <div class="quality-desc">Conversations with you feel like a breath of fresh air, always.</div>
+      </div>
+      <div class="quality-card reveal">
+        <div class="quality-icon">💫</div>
+        <div class="quality-title">Genuine Soul</div>
+        <div class="quality-desc">You don't pretend. What you feel, you feel honestly — and that's beautiful.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="thin-divider"></div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SECTION 3 — EMOTIONAL DEPTH
+  ══════════════════════════════════════════════════════════ -->
+  <section id="depth">
+    <p class="section-label reveal">Chapter Two</p>
+    <h2 class="section-heading reveal">Moments That Stayed</h2>
+    <p class="section-body reveal">
+      There are conversations I still think about. Little moments that felt ordinary
+      then, but somehow stayed with me — quietly, without permission.
+    </p>
+
+    <div class="quote-block reveal">
+      <p>
+        "Sabr ka phal meetha hota hai" — you said it so casually, but I remember
+        thinking: she understands patience in a way most people don't. And I smiled
+        longer than I should have.
+      </p>
+    </div>
+
+    <p class="section-body reveal">
+      It's strange how certain people leave impressions that don't fade.
+      You're one of those people, Shumaila. The kind whose words linger,
+      whose laughter you find yourself hoping to hear again.
+    </p>
+
+    <div class="quote-block reveal">
+      <p>
+        I've noticed the way you think before you speak. The way you care
+        without making it obvious. The way you carry yourself — with a softness
+        that somehow feels like <em>strength</em>.
+      </p>
+    </div>
+  </section>
+
+  <div class="thin-divider"></div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SHAYRI — Shah Abdul Latif Bhittai
+  ══════════════════════════════════════════════════════════ -->
+  <section id="shayri">
+    <p class="section-label reveal">شاه عبداللطيف ڀٽائي</p>
+    <h2 class="section-heading reveal">روح جون آيتون</h2>
+
+    <div class="shayri-card reveal">
+      <!-- Bhittai verse -->
+      <p class="shayri-sindhi">
+        جي تو بيت ڀانيو، سي آيتون آهين<br>
+        نيو من لائين، پريان سندي پار ڏي
+      </p>
+
+      <p class="shayri-poet">
+        <span class="shayri-ornament">❧</span>
+        Shah Abdul Latif Bhittai
+        <span class="shayri-ornament">❧</span>
+      </p>
+
+      <div class="shayri-divider"></div>
+
+      <!-- Personal note to Shumaila -->
+      <p class="shayri-personal">
+        شميله،<br>
+        اهي لفظ رڳو شاعري ناهن،<br>
+        هي منهنجي دل جا سچا احساس آهن.<br>
+        جيڪڏهن تون سمجهين،<br>
+        ته منهنجي هر لفظ ۾ تنهنجو ئي ذڪر آهي.
+      </p>
+
+      <p class="shayri-closing">
+        بس ايترو ئي چوان ٿو،<br>
+        تون منهنجي لاءِ تمام خاص آهين 💕
+      </p>
+    </div>
+  </section>
+
+  <div class="thin-divider"></div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SECTION 4 — REALIZATION
+  ══════════════════════════════════════════════════════════ -->
+  <section id="realization">
+    <p class="section-label reveal">Chapter Three</p>
+    <h2 class="section-heading reveal">When I Realized</h2>
+    <p class="section-body reveal">
+      I didn't plan any of this. Some things just become clear slowly —
+      like the way morning light fills a room before you even notice it's there.
+    </p>
+
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>The first time we talked</h4>
+          <p>I thought: this person is different. There was something in the way you expressed yourself — thoughtful,
+            unhurried, real.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>When I found myself looking forward to your messages</h4>
+          <p>Not because I was waiting, but because talking to you felt like the best part of an ordinary day.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>When I wanted to tell you something good happened</h4>
+          <p>And the first person I thought of was you. That's when I knew.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h4>Today — your birthday</h4>
+          <p>I wanted to do something that felt as sincere as what I feel. So I made this, just for you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SECTION 5 — CONFESSION
+  ══════════════════════════════════════════════════════════ -->
+  <div id="confession">
+    <div class="glow-ring"></div>
+    <div class="heart-container" id="heartContainer"></div>
+
+    <div class="inner">
+      <p class="section-label reveal">Chapter Four</p>
+      <h2 class="section-heading reveal">Something Honest</h2>
+
+      <p class="confession-body reveal">
+        I've thought about how to say this — and I've decided that simple and honest
+        is better than perfect and rehearsed.
+      </p>
+
+      <span class="confession-highlight reveal">I like you, Shumaila.</span>
+
+      <p class="confession-body reveal">
+        Not in a fleeting way. Not out of loneliness or impulse.
+        But in the quiet, steady way that grows when you genuinely admire someone —
+        their mind, their warmth, the way they make the world feel a little softer.
+      </p>
+
+      <p class="confession-body reveal">
+        I'm not asking for anything. I just didn't want this birthday to pass
+        without you knowing that someone out there thinks you are
+        <em>truly, genuinely wonderful</em> — and feels lucky to know you.
+      </p>
+
+      <span class="confession-highlight reveal">You deserve to be told. 🌸</span>
+    </div>
+  </div>
+
+  <div class="thin-divider"></div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SECTION 6 — CLOSING REASSURANCE
+  ══════════════════════════════════════════════════════════ -->
+  <section id="closing">
+    <p class="section-label reveal">Chapter Five</p>
+    <h2 class="section-heading reveal">No Pressure, Just Peace</h2>
+
+    <div class="closing-card reveal">
+      <p>
+        Whatever you feel reading this — it's okay. You don't owe me anything.
+        Not a response, not a feeling, not even an acknowledgment.
+      </p>
+      <p>
+        I just wanted today to feel special for you. Because you deserve days
+        that feel warm and intentional — days where someone reminds you
+        how quietly extraordinary you are.
+      </p>
+      <p>
+        So on your birthday, I hope you feel celebrated, seen, and deeply at peace.
+        I hope the year ahead brings you everything your heart quietly hopes for.
+      </p>
+      <p>
+        And no matter what — I'm glad you exist in this world, Shumaila.
+        Truly.
+      </p>
+      <div class="signature">With all sincerity 🌷</div>
+    </div>
+  </section>
+
+  <div class="thin-divider"></div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       QUIZ — A Gentle Little Game
+  ══════════════════════════════════════════════════════════ -->
+  <section id="quiz-section">
+    <p class="section-label reveal">A Little Game</p>
+    <h2 class="section-heading reveal">Let Me Guess About You</h2>
+    <p class="section-body reveal">
+      I've been paying attention. Let's see if I know you a little.
+    </p>
+
+    <div class="quiz-form reveal">
+      <form id="quizForm">
+        <div class="quiz-field">
+          <label>Which flower do you love most?</label>
+          <input type="text" name="Favorite Flower" placeholder="Your answer..." required />
+        </div>
+        <div class="quiz-field">
+          <label>Your favorite drink?</label>
+          <input type="text" name="Favorite Drink" placeholder="Your answer..." required />
+        </div>
+        <div class="quiz-field">
+          <label>Where would you love to travel someday?</label>
+          <input type="text" name="Dream Destination" placeholder="Your answer..." required />
+        </div>
+        <input type="hidden" name="_subject" value="🌸 Birthday Quiz from Shumaila">
+        <input type="hidden" name="_captcha" value="false">
+        <button type="submit" class="btn-primary">Send My Answers 🌸</button>
+        <p class="quiz-success" id="quizSuccess">Thank you, Shumaila 🌸 Your answers made me smile.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       MESSAGE — Drop a Note
+  ══════════════════════════════════════════════════════════ -->
+  <section id="message-section">
+    <p class="section-label reveal">Your Turn</p>
+    <h2 class="section-heading reveal">Leave a Little Note</h2>
+    <p class="section-body reveal">
+      If anything here made you feel something — even just a smile — I'd love to know.
+    </p>
+
+    <div class="message-form reveal">
+      <form id="thankForm">
+        <textarea name="Message" placeholder="Write whatever you feel..." required></textarea>
+        <input type="hidden" name="_subject" value="💌 Birthday Note from Shumaila">
+        <input type="hidden" name="_captcha" value="false">
+        <button type="submit" class="btn-primary">Send 💌</button>
+        <p class="msg-success" id="msgSuccess">Received with a smile 🌸 Thank you, Shumaila.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer>
+    Made with <span>♥</span> · For Shumaila · September 2026
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════════════════════════════════ -->
   <script>
-    function unlockSecret() {
-      const input = document.getElementById("secretInput").value.toLowerCase();
-      if (input === "shumaila") {
-        document.getElementById("secretContent").style.display = "block";
+    /* ── Music Toggle ──────────────────────────────────────── */
+    const music = document.getElementById('bgmusic');
+    const toggle = document.getElementById('music-toggle');
+    let playing = false;
+
+    music.volume = 0.25;
+
+    toggle.addEventListener('click', () => {
+      if (playing) {
+        music.pause();
+        toggle.textContent = '🔇';
+        playing = false;
       } else {
-        alert("Oops! Wrong code. Try again.");
+        music.play().catch(() => { });
+        toggle.textContent = '🎵';
+        playing = true;
       }
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      const music = document.getElementById('bgmusic');
-      music.volume = 2;
-
-      // Try auto-playing with a small delay
-      setTimeout(() => {
-        const playPromise = music.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              console.log("Music playing...");
-            })
-            .catch(error => {
-              console.log("Autoplay prevented. Waiting for user interaction.");
-              document.body.addEventListener('click', () => {
-                music.play();
-              }, { once: true });
-            });
-        }
-      }, 1000);
     });
 
-    // 🎮 Memory Game Script
-    const icons = ["🎂","🎁","🎈","🍰","🎉","🍫"];
-    let cards = [...icons, ...icons]; // pairs
-    let flipped = [];
-    let matched = 0;
+    // Auto-play on first interaction
+    document.body.addEventListener('click', () => {
+      if (!playing) {
+        music.play().then(() => {
+          playing = true;
+          toggle.textContent = '🎵';
+        }).catch(() => { });
+      }
+    }, { once: true });
 
-    // shuffle
-    cards.sort(() => Math.random() - 0.5);
-
-    const board = document.getElementById("gameBoard");
-
-    cards.forEach(icon => {
-      const card = document.createElement("div");
-      card.classList.add("card");
-      card.dataset.icon = icon;
-      card.textContent = "?";
-      board.appendChild(card);
-
-      card.addEventListener("click", () => {
-        if (card.classList.contains("flipped") || flipped.length === 2) return;
-        card.textContent = icon;
-        card.classList.add("flipped");
-        flipped.push(card);
-
-        if (flipped.length === 2) {
-          setTimeout(checkMatch, 800);
+    /* ── Scroll Reveal ─────────────────────────────────────── */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
       });
-    });
+    }, { threshold: 0.12 });
 
-    function checkMatch() {
-      const [card1, card2] = flipped;
-      if (card1.dataset.icon === card2.dataset.icon) {
-        matched += 2;
-        if (matched === cards.length) {
-          document.getElementById("message").textContent = "🎉 Yay Shumaila! You found all the matches! 🥳";
-        }
-      } else {
-        card1.textContent = "?";
-        card2.textContent = "?";
-        card1.classList.remove("flipped");
-        card2.classList.remove("flipped");
-      }
-      flipped = [];
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ── Petal Particles (Hero) ────────────────────────────── */
+    const petalContainer = document.getElementById('petals');
+    const petalColors = ['#f4a7b9', '#d8c4e8', '#f5c6d0', '#e8c4d8', '#fce4ec'];
+
+    for (let i = 0; i < 18; i++) {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.background = petalColors[Math.floor(Math.random() * petalColors.length)];
+      petal.style.width = (6 + Math.random() * 8) + 'px';
+      petal.style.height = petal.style.width;
+      petal.style.animationDuration = (8 + Math.random() * 10) + 's';
+      petal.style.animationDelay = (Math.random() * 10) + 's';
+      petalContainer.appendChild(petal);
     }
-  </script>
 
-<div class="thank-you-section">
-  <h3>💌 Share Your Thoughts</h3>
-  <p>If you’d like, you can drop a fun note or message here 😄</p>
-  <form id="thankForm">
-    <textarea name="Message" class="thank-input" rows="3" placeholder="Write your message here..." style="width:90%; max-width:400px;" required></textarea>
-    <input type="hidden" name="_subject" value="💌 Birthday Website Message from Shumaila">
-    <input type="hidden" name="_captcha" value="false">
-    <br>
-    <button type="submit" class="btn-send">Send</button>
-  </form>
-</div>
+    /* ── Floating Hearts (Confession) ─────────────────────── */
+    const heartContainer = document.getElementById('heartContainer');
+    const heartEmojis = ['🌸', '💗', '🌷', '💕', '✨', '💖'];
 
-<script>
-  document.getElementById("thankForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // stop default form redirect
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.fontSize = (0.9 + Math.random() * 1.2) + 'rem';
+      heart.style.animationDuration = (8 + Math.random() * 10) + 's';
+      heart.style.animationDelay = (Math.random() * 12) + 's';
+      heartContainer.appendChild(heart);
+    }
 
-    let formData = new FormData(this);
-
-    fetch("https://formsubmit.co/hingorjoiqbal123@gmail.com", {
-      method: "POST",
-      body: formData
-    }).then(() => {
-      // Do nothing (silent submit)
-    }).catch(() => {
-      // Still do nothing, even if error
+    /* ── Quiz Form ─────────────────────────────────────────── */
+    document.getElementById('quizForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      fetch('https://formsubmit.co/hingorjoiqbal123@gmail.com', {
+        method: 'POST',
+        body: formData
+      }).catch(() => { });
+      this.reset();
+      document.getElementById('quizSuccess').style.display = 'block';
     });
 
-    this.reset(); // optional: clear the form after sending
-  });
-
-</script>
-
+    /* ── Thank Form ────────────────────────────────────────── */
+    document.getElementById('thankForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      fetch('https://formsubmit.co/hingorjoiqbal123@gmail.com', {
+        method: 'POST',
+        body: formData
+      }).catch(() => { });
+      this.reset();
+      document.getElementById('msgSuccess').style.display = 'block';
+    });
+  </script>
 </body>
+
 </html>
-
-
-
-
-
-
-
